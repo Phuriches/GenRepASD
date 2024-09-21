@@ -1,0 +1,9 @@
+librosa==0.10.2.post1
+numpy==1.24.3
+pandas==2.0.2
+PyYAML==6.0.1
+scikit_learn==1.5.1
+scipy==1.14.1
+tqdm==4.66.4
+torch==2.1.2
+torchaudio==2.1.2

@@ -1,0 +1,63 @@
+# dcase 2020 datasets
+dcase2020_train_dirs:
+  - ../database/dcase2020t2/train_data/fan/train
+  - ../database/dcase2020t2/train_data/pump/train
+  - ../database/dcase2020t2/train_data/slider/train
+  - ../database/dcase2020t2/train_data/ToyCar/train
+  - ../database/dcase2020t2/train_data/ToyConveyor/train
+  - ../database/dcase2020t2/train_data/valve/train
+dcase2020_add_dirs:
+  - ../database/dcase2020t2/add_data/fan/train
+  - ../database/dcase2020t2/add_data/pump/train
+  - ../database/dcase2020t2/add_data/slider/train
+  - ../database/dcase2020t2/add_data/ToyCar/train
+  - ../database/dcase2020t2/add_data/ToyConveyor/train
+  - ../database/dcase2020t2/add_data/valve/train
+dcase2020_valid_dirs:
+  - ../database/dcase2020t2/train_data/fan/test
+  - ../database/dcase2020t2/train_data/pump/test
+  - ../database/dcase2020t2/train_data/slider/test
+  - ../database/dcase2020t2/train_data/ToyCar/test
+  - ../database/dcase2020t2/train_data/ToyConveyor/test
+  - ../database/dcase2020t2/train_data/valve/test
+dcase2020_test_dirs:
+  - ../database/dcase2020t2/eval_data/fan/test
+  - ../database/dcase2020t2/eval_data/pump/test
+  - ../database/dcase2020t2/eval_data/slider/test
+  - ../database/dcase2020t2/eval_data/ToyCar/test
+  - ../database/dcase2020t2/eval_data/ToyConveyor/test
+  - ../database/dcase2020t2/eval_data/valve/test
+
+# dcase2023 datasets
+dcase2023_train_dirs:
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/bearing/train
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/fan/train
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/gearbox/train
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/slider/train
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/ToyCar/train
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/ToyTrain/train
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/valve/train
+dcase2023_add_dirs:
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/bandsaw/train
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/grinder/train 
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/shaker/train
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/ToyDrone/train
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/ToyNscale/train
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/ToyTank/train
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/Vacuum/train
+dcase2023_valid_dirs:
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/bearing/test
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/fan/test
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/gearbox/test
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/slider/test
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/ToyCar/test
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/ToyTrain/test
+  - ../database/dcase2023t2/data/dcase2023t2/dev_data/raw/valve/test
+dcase2023_test_dirs:
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/bandsaw/test
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/grinder/test
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/shaker/test
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/ToyDrone/test
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/ToyNscale/test
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/ToyTank/test
+  - ../database/dcase2023t2/data/dcase2023t2/eval_data/raw/Vacuum/test
