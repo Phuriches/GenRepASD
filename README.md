@@ -21,7 +21,7 @@ python run_genrep_dcase2023.py \
     --save_official
 ```
 
-After run the above script, you can evaluate the performance using DCASE2023T2 official evaluator:
+After run the above script, you can also evaluate the performance using DCASE2023T2 official evaluator (you should get the same result as above):
 ```
 bash dcase2023_task2_evaluator/03_evaluation_eval_data.sh
 ```
