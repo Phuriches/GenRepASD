@@ -4,7 +4,7 @@ Pytorch implementation of Deep Generic Representations for Domain-Generalized An
 ## Setting up
 1. Install the requirements `pip install -r requirements.txt`
 
-2. Download the [DCASE2020T2](https://dcase.community/challenge2020/task-unsupervised-detection-of-anomalous-sounds#download) and [DCASE2023T2](https://dcase.community/challenge2023/task-first-shot-unsupervised-anomalous-sound-detection-for-machine-condition-monitoring#download) datasets and place the datasets according to the given directory structure specified in `data_config.yaml`.
+2. Download the [DCASE2020T2](https://dcase.community/challenge2020/task-unsupervised-detection-of-anomalous-sounds#download) and [DCASE2023T2](https://dcase.community/challenge2023/task-first-shot-unsupervised-anomalous-sound-detection-for-machine-condition-monitoring#download) datasets and place them according to the given directory structure specified in `data_config.yaml`.
 
 3. Download pre-trained weights of BEATs from https://github.com/microsoft/unilm/tree/master/beats and place them in a pre-trained directory.
 
