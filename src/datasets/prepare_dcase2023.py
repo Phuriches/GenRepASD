@@ -39,7 +39,7 @@ def get_data_list(file_dirs):
     return file_list, label_list, source_list
 
 def get_test_data_list(test_dirs):
-    root_path = "../"
+    root_path = "./"
     test_file_list = []
     test_label_list = []
     test_machine_list = []
