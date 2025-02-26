@@ -1,5 +1,5 @@
 # GenRepASD
-Pytorch implementation of Deep Generic Representations for Domain-Generalized Anomalous Sound Detection: https://arxiv.org/abs/2409.05035
+Pytorch implementation of Deep Generic Representations for Domain-Generalized Anomalous Sound Detection, accepted at ICASSP 2025: https://arxiv.org/abs/2409.05035
 
 ## Setting up
 1. Install the requirements `pip install -r requirements.txt`
@@ -44,12 +44,11 @@ python run_genrep_dcase2020.py \
 ## Citation
 If you find this work useful, please consider citing:
 ```
-@misc{saengthong2024deep,
+@inproceedings{saengthong2025deep,
     title={Deep Generic Representations for Domain-Generalized Anomalous Sound Detection},
     author={Phurich Saengthong and Takahiro Shinozaki},
-    year={2024},
-    eprint={2409.05035},
-    archivePrefix={arXiv},
-    primaryClass={cs.SD}
+    booktitle={Proceedings of the IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP)},
+    year={2025},
+    publisher={IEEE}
 }
 ```
