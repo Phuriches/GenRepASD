@@ -180,9 +180,6 @@ for class_name in machine_names:
     test_dataloader = DataLoader(test_dataset, batch_size=batch_size, pin_memory=False)
     print(f'class name: {class_name}')
 
-    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, pin_memory=False)
-    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, pin_memory=False)
-
     # extract train set features
     print(f'len train dataset: {len(train_dataset)}')
     train_feature_layers = []
