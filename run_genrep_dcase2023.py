@@ -116,25 +116,12 @@ print(sum([p.numel() for p in model.parameters() if p.requires_grad]))
 #     dist_matrix = torch.sqrt(torch.pow(x - y, 2).sum(2))
 #     return dist_matrix
 
-def calc_dist_matrix(x, y, bs=16):
-    """Calculate Euclidean distance matrix with torch.tensor"""
-    if bs > x.shape[0]:
-        bs = x.shape[0]
-    dist_matrices = torch.zeros(x.size(0), y.size(0))
-    d = x.size(1)
-    for i in range(y.shape[0]):
-        m = 1
-        dist_x_list = torch.zeros(x.size(0))
-        x_batch = x.size(0)//bs + 1 if x.size(0) % bs != 0 else x.size(0)//bs
-        for j in range(x_batch):
-            x_i = x[j*bs:j*bs+bs]
-            n = x_i.size(0)
-            x_i = x_i.unsqueeze(1).expand(n, m, d) # 16, 1, 768
-            y_i = y[i].unsqueeze(0).expand(n, m, d)
-            dist_matrix = torch.sqrt(torch.pow(x_i - y_i, 2).sum(2))
-            dist_x_list[j*bs:j*bs+bs] = dist_matrix.reshape(-1)
-        dist_matrices[:, i] = dist_x_list
-    return dist_matrices
+def calc_dist_matrix(x, y):
+    """Efficient Euclidean distance matrix calculation using broadcasting"""
+    x_norm = (x**2).sum(dim=1, keepdim=True)  # Shape: (N, 1)
+    y_norm = (y**2).sum(dim=1, keepdim=True).T  # Shape: (1, M)
+    dist_matrix = torch.sqrt(x_norm + y_norm - 2 * x @ y.T)  # Shape: (N, M)
+    return dist_matrix
 
 # ======== evaluation function ========
 def eval_score(gt_list, scores):
@@ -337,8 +324,7 @@ for class_name in machine_names:
                 # else:
                 all_feat = source_train_features
                 ST_dist_matrix = calc_dist_matrix(torch.flatten(target_feat, 1),
-                                            torch.flatten(all_feat, 1),
-                                            bs=32)
+                                            torch.flatten(all_feat, 1))
                 topk_value, topk_index = torch.topk(ST_dist_matrix, k=n_mix_support, dim=1, largest=False)
                 topk_values.append(topk_value)
                 topk_indexes.append(topk_index)
@@ -358,8 +344,7 @@ for class_name in machine_names:
             train_all_lasts = torch.cat([train_all_lasts, augmented_target_samples], 0)
 
         dist_matrix = calc_dist_matrix(torch.flatten(test_all_lasts, 1),
-                                    torch.flatten(train_all_lasts, 1),
-                                    bs=32)
+                                    torch.flatten(train_all_lasts, 1))
         
         # create source and target memory banks
         source_dist = dist_matrix[:, :990]       
