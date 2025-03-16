@@ -298,47 +298,30 @@ for class_name in machine_names:
         print(f' layer {num_layer+1}')
 
         augmented_target_samples = []
-
         if n_mix_support is not None:
             source_train_features = train_all_lasts[:990]
             target_train_features = train_all_lasts[990:]
 
-            source_classes = np.unique(train_class_ids[:990])
-            target_classes = np.unique(train_class_ids[990:])
+            # Compute distance matrix between target and source features
+            ST_dist_matrix = calc_dist_matrix(
+                torch.flatten(target_train_features, 1),
+                torch.flatten(source_train_features, 1)
+            )
 
-            target_sep_feats = []
-            target_sep_feats.append(target_train_features)
+            # Get top-k nearest source features for each target feature
+            topk_values, topk_indexes = torch.topk(ST_dist_matrix, k=n_mix_support, dim=1, largest=False)
 
-            ST_dist_matrices = []
-            topk_values = []
-            topk_indexes = []
-            all_feats = []
-            for target_feat in target_sep_feats:
-                # feat_except_target = [target_sep_feats[i] for i in range(len(target_sep_feats)) if not torch.equal(target_sep_feats[i], target_feat)]
-                # if len(feat_except_target) != 0:
-                #     feat_except_target = torch.cat(feat_except_target, 0)
-                #     all_feat = torch.cat([source_train_features, feat_except_target.view(-1, source_train_features.shape[-1])], 0)
-                # else:
-                all_feat = source_train_features
-                ST_dist_matrix = calc_dist_matrix(torch.flatten(target_feat, 1),
-                                            torch.flatten(all_feat, 1))
-                topk_value, topk_index = torch.topk(ST_dist_matrix, k=n_mix_support, dim=1, largest=False)
-                topk_values.append(topk_value)
-                topk_indexes.append(topk_index)
-                ST_dist_matrices.append(ST_dist_matrix)
-                all_feats.append(all_feat)
+            # Perform mixup augmentation
+            for i, topk_index in enumerate(topk_indexes):
+                nearest_sources = source_train_features[topk_index]
+                mixed_samples = alpha * target_train_features[i] + (1 - alpha) * nearest_sources
+                augmented_target_samples.append(mixed_samples)
 
-            for ix, topk_index in enumerate(topk_indexes):
-                target_feat = target_sep_feats[ix]
-                for i in range(len(topk_index)):
-                    for a_support_set in all_feats[ix][topk_index[i]]:
-                        mixup_sample = alpha * target_feat[i] + (1 - alpha) * a_support_set
-                        augmented_target_samples.append(mixup_sample)
-
-            augmented_target_samples = torch.stack(augmented_target_samples)
+            # Stack augmented samples and update training features
+            augmented_target_samples = torch.cat(augmented_target_samples, dim=0)
             print(f"augmented_target_samples: {augmented_target_samples.size()}")
-            
-            train_all_lasts = torch.cat([train_all_lasts, augmented_target_samples], 0)
+
+            train_all_lasts = torch.cat([train_all_lasts, augmented_target_samples], dim=0)
 
         dist_matrix = calc_dist_matrix(torch.flatten(test_all_lasts, 1),
                                     torch.flatten(train_all_lasts, 1))
